@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Weather Widget</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="server.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="./public/css/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Lexend+Deca&display=swap" rel="stylesheet">
+</head>
+<script>
+var request = new XMLHttpRequest();
+  request.open('GET', 'api.openweathermap.org/data/2.5/weather?q=Guadalajara,MX&APPID=8d0b7892bc5c02420f1c46dcdb9c2e4d', true);  // `false` makes the request synchronous
+  request.onload = onSuccess;
+  request.onerror = onError;
+  request.send(null);
+</script>
+
+<body>
+    <div class="main-container">
+        <div class="info-day">
+            <span class="city-name">Guadalajara, Jal.</span>
+            <span class="week-day">jueves, <span class="hour"> 16:00</span></span>
+            <span class="day-forecast">Mayormente nublado</span>
+        </div>
+        <div class="current-forecast">
+            <div class="main-info-left">
+                <span class="weather-img">IMG</span>
+                <span class="degrees">24</span>
+                <span class="degrees-scale">°C | °F</span>
+            </div>
+            <div class="main-info-right">
+                <span class="hour">Prob. de precipitaciones: 10%</span>
+                <span class="day-forecast">Humedad: 56%</span>
+                <span class="day-forecast">Viento: a 11 km/h</span>
+            </div>
+        </div>
+        <div class="daily-forecast-bundle">
+            <div class="daily-forecast">
+                <span>vie</span>
+                <span>imagen</span>
+                <span><span>max</span><span>min</span></span>
+            </div>
+            <div class="daily-forecast">
+                <span>vie</span>
+                <span>imagen</span>
+                <span><span>max</span><span>min</span></span>
+            </div>
+            <div class="daily-forecast">
+                <span>vie</span>
+                <span>imagen</span>
+                <span><span>max</span><span>min</span></span>
+            </div>
+            <div class="daily-forecast">
+                <span>vie</span>
+                <span>imagen</span>
+                <span><span>max</span><span>min</span></span>
+            </div>
+            <div class="daily-forecast">
+                <span>vie</span>
+                <span>imagen</span>
+                <span><span>max</span><span>min</span></span>
+            </div>
+            <div class="daily-forecast">
+                <span>vie</span>
+                <span>imagen</span>
+                <span><span>max</span><span>min</span></span>
+            </div>
+            <div class="daily-forecast">
+                <span>vie</span>
+                <span>imagen</span>
+                <span><span>max</span><span>min</span></span>
+            </div>
+            <div class="daily-forecast">
+                <span>vie</span>
+                <span>imagen</span>
+                <span><span>max</span><span>min</span></span>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
