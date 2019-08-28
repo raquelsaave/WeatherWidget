@@ -15,13 +15,14 @@ request.onload = function () {
         // Main Icon
         document.querySelector('.weather-img').innerHTML = `<img src="https://openweathermap.org/img/w/${data.weather[0].icon}.png">`;
         // Current temperature
-        document.querySelector('.degrees').innerHTML = data.main.temp - 273.15;
+        document.querySelector('.degrees').innerHTML = Math.round(data.main.temp - 273.15);
         // Day humidity
         document.querySelector('.day-forecast-humidity').innerHTML = `Humidity: ${data.main.humidity} 
         %`
         // Wind speed
         document.querySelector('.day-forecast-wind').innerHTML = `Wind: ${data.wind.speed}`;
 
+    
         var d = new Date();
         var weekday = new Array(7);
         weekday[0] = "Sun";
@@ -39,6 +40,13 @@ request.onload = function () {
         weekday[12] = "Fri";
 
         var n = weekday[d.getDay()];
+
+        // Get day
+        var hour = d.getHours();
+        var minutes = d.getMinutes();
+        document.querySelector(".week-day-hour").innerHTML = `${n},   ${hour}:${minutes}`
+        
+       // Get weekdays 
         document.getElementById("day1").innerHTML = n;
         var n1 = weekday[d.getDay()+1];
         document.getElementById("day2").innerHTML = n1;
