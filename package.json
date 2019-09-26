@@ -1,12 +1,34 @@
 {
   "name": "weatherwidget",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "connect": "^3.7.0",
+    "grunt-jslint": "^1.1.15",
+    "serve-static": "^1.14.1"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.4",
+    "grunt-eslint": "^22.0.0",
+    "grunt-sass": "^3.1.0",
+    "grunt-stylelint": "~0.11.0",
+    "node-sass": "^4.12.0",
+    "stylelint": "~10.1.0",
+    "stylelint-config-recommended": "~2.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raquelsaave/WeatherWidget.git"
+  },
+  "bugs": {
+    "url": "https://github.com/raquelsaave/WeatherWidget/issues"
+  },
+  "homepage": "https://github.com/raquelsaave/WeatherWidget#readme",
+  "description": ""
 }
