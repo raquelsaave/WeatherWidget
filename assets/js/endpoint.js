@@ -24,7 +24,8 @@ request.onload = function () {
 
 
 		var d = new Date();
-		var weekday = new Array(7);
+		var weekday = new Array(12);
+		// var weekday = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat","Sun","Mon","Tue","Wed","Thu","Fri"]
 		weekday[0] = "Sun";
 		weekday[1] = "Mon";
 		weekday[2] = "Tue";
