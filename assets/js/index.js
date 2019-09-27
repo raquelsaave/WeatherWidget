@@ -41,7 +41,7 @@ weatherService.getWeather("Guadalajara,MX", function (data) {
 	document.querySelector(".day-forecast-wind").innerHTML = `Wind: ${data.wind.speed}`;
 
 	var d = new Date();
-	var weekday = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat","Sun","Mon","Tue","Wed","Thu","Fri"]
+	var weekday = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"]
 	var n = weekday[d.getDay()];
 
 	// Get day
@@ -49,28 +49,28 @@ weatherService.getWeather("Guadalajara,MX", function (data) {
 	var minutes = d.getMinutes();
 	document.querySelector(".week-day-hour").innerHTML = `${n},   ${hour}:${minutes}`
 	document.getElementById("day1").innerHTML = n;
-	for(let i = 2;i<9; i++) {
-		renderWeekdays(i,weekday,d)
+	for (let i = 2; i < 9; i++) {
+		renderWeekdays(i, weekday, d)
 	}
 
 	weatherService.getForecast(data.id, 8, function (forecast) {
 		console.log(forecast);
-		for(let i=0; i<8; i++) {
-			renderBundle(i,forecast.list[i].weather[0].icon,forecast.list[i].main.temp_max, forecast.list[i].main.temp_min)
+		for (let i = 0; i < 8; i++) {
+			renderBundle(i, forecast.list[i].weather[0].icon, forecast.list[i].main.temp_max, forecast.list[i].main.temp_min)
 		}
 	});
 });
 
-function renderBundle(num,icon,max,min) {
+function renderBundle(num, icon, max, min) {
 	// Icon 
-	document.querySelector(`.weather-img-${num+1}`).innerHTML = `<img src="https://openweathermap.org/img/w/${icon}.png">`;
+	document.querySelector(`.weather-img-${num + 1}`).innerHTML = `<img src="https://openweathermap.org/img/w/${icon}.png">`;
 	// Max
-	document.querySelector(`.day-${num+1}-max`).innerHTML = `${Math.round(max - 273.15)}°C `
+	document.querySelector(`.day-${num + 1}-max`).innerHTML = `${Math.round(max - 273.15)}°C `
 	// Min
-	document.querySelector(`.day-${num+1}-min`).innerHTML = `  ${Math.round(min - 273.15)}°C`
+	document.querySelector(`.day-${num + 1}-min`).innerHTML = `  ${Math.round(min - 273.15)}°C`
 }
 
-function renderWeekdays(num,weekday,d) {
+function renderWeekdays(num, weekday, d) {
 	// Get weekdays 
-	document.getElementById(`day${num}`).innerHTML = weekday[d.getDay() + num-1];
+	document.getElementById(`day${num}`).innerHTML = weekday[d.getDay() + num - 1];
 }
