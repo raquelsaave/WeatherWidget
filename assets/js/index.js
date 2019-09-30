@@ -1,30 +1,30 @@
+const WEATHER_API_KEY = "8d0b7892bc5c02420f1c46dcdb9c2e4d";
+
 function WeatherService(API_ID) {
 	this.API = API_ID;
+	this.request = new XMLHttpRequest();
 	this.getForecast = this.getForecast.bind(this);
 	this.getWeather = this.getWeather.bind(this);
 }
 
-
-WeatherService.prototype.getWeather = function (city, callback) {
-	var request = new XMLHttpRequest();
-	request.open("GET", `https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${this.API}`, true);  // `false` makes the request synchronous
-	request.onload = function () {
-		callback(JSON.parse(this.response))
-	};
-	request.send(null);
+WeatherService.prototype = {
+	getWeather: function (city, callback) {
+		this.request.open("GET", `https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${this.API}`, true);  // `false` makes the request synchronous
+		this.request.onload = function () {
+			callback(JSON.parse(this.response))
+		};
+		this.request.send(null);
+	},
+	getForecast: function (city_ID, numDays, callback) {
+		this.request.open("GET", `https://api.openweathermap.org/data/2.5/forecast?id=${city_ID}&cnt=${numDays}&APPID=${this.API}`, true);  // `false` makes the request synchronous
+		this.request.onload = function () {
+			callback(JSON.parse(this.response))
+		};
+		this.request.send(null);
+	}
 }
 
-WeatherService.prototype.getForecast = function (city_ID, numDays, callback) {
-	var request = new XMLHttpRequest();
-	request.open("GET", `https://api.openweathermap.org/data/2.5/forecast?id=${city_ID}&cnt=${numDays}&APPID=${this.API}`, true);  // `false` makes the request synchronous
-	request.onload = function () {
-		callback(JSON.parse(this.response))
-	};
-	request.send(null);
-}
-
-
-let weatherService = new WeatherService("8d0b7892bc5c02420f1c46dcdb9c2e4d");
+let weatherService = new WeatherService(WEATHER_API_KEY);
 weatherService.getWeather("Guadalajara,MX", function (data) {
 	console.log(data)
 	document.querySelector(".city-and-country-name").innerHTML = `${data.name}, ${data.sys.country}`;
