@@ -17,10 +17,10 @@ WeatherComponent.prototype = {
 					today: today,
 					forecast: forecast
 				}
-				weatherComponent.render(this.weatherData);
-			});
-		});	
-	},
+				this.render(this.weatherData);
+			}.bind(this));
+		}.bind(this));	
+	},	
 	render: function (weatherData) {
 		// T O D A Y
 		var today = weatherData.today
