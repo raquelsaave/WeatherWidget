@@ -5,10 +5,18 @@ function WeatherComponent(city, weatherService) {
 		today: 0,
 		forecast: 0 
 	}
+	this.update = this.update.bind(this)
 	this.render = this.render.bind(this)
 }
 
 WeatherComponent.prototype = {
+	update: function (today,forecast) {
+		weatherComponent.weatherData = {
+			today: today,
+			forecast: forecast
+		};
+		this.render();
+	},
 	render: function () {
 
 		// T O D A Y
