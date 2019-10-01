@@ -2,25 +2,28 @@ function WeatherComponent(city, weatherService) {
 	this.city = city
 	this.weatherService = weatherService
 	this.weatherData = {
-		today: 0,
-		forecast: 0 
+		today:0,
+		forecast:0
 	}
 	this.update = this.update.bind(this)
 	this.render = this.render.bind(this)
 }
 
 WeatherComponent.prototype = {
-	update: function (today,forecast) {
-		weatherComponent.weatherData = {
-			today: today,
-			forecast: forecast
-		};
-		this.render();
+	update: function () {
+		this.weatherService.getWeather(this.city, function (today) {
+			weatherService.getForecast(today.id, 8, function (forecast) {
+				this.weatherData = {
+					today: today,
+					forecast: forecast
+				}
+				weatherComponent.render(this.weatherData);
+			});
+		});	
 	},
-	render: function () {
-
+	render: function (weatherData) {
 		// T O D A Y
-		var today = this.weatherData.today
+		var today = weatherData.today
 		document.querySelector(".city-and-country-name").innerHTML = `${today.name}, ${today.sys.country}`;
 		// Forecast of the day
 		document.querySelector(".day-forecast").innerHTML = today.weather[0].main;
@@ -48,7 +51,7 @@ WeatherComponent.prototype = {
 		}
 
 		// F O R E C A S T
-		var forecast = this.weatherData.forecast;
+		var forecast = weatherData.forecast;
 		for (let i = 0; i < 8; i++) {
 			renderBundle(i, forecast.list[i].weather[0].icon, forecast.list[i].main.temp_max, forecast.list[i].main.temp_min)
 		}
@@ -69,3 +72,4 @@ function renderWeekdays(num, weekday, d) {
 	// Get weekdays 
 	document.getElementById(`day${num}`).innerHTML = weekday[d.getDay() + num - 1];
 }
+
