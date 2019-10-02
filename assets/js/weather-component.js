@@ -28,7 +28,7 @@ WeatherComponent.prototype = {
 		// Forecast of the day
 		document.querySelector(".day-forecast").innerHTML = today.weather[0].main;
 		// Main Icon
-		document.querySelector(".weather-img").innerHTML = `<img src="https://openweathermap.org/img/w/${today.weather[0].icon}.png">`;
+		document.querySelector(".weather-img").innerHTML = `<img class="weather-img" src="https://openweathermap.org/img/w/${today.weather[0].icon}.png">`;
 		// Current temperature
 		document.querySelector(".degrees").innerHTML = Math.round(today.main.temp - 273.15);
 		// Day humidity
@@ -63,9 +63,9 @@ function renderBundle(num, icon, max, min) {
 	// Icon 
 	document.querySelector(`.weather-img-${num + 1}`).innerHTML = `<img src="https://openweathermap.org/img/w/${icon}.png">`;
 	// Max
-	document.querySelector(`.day-${num + 1}-max`).innerHTML = `${Math.round(max - 273.15)}°C `
+	document.querySelector(`.day-${num + 1}-max`).innerHTML = `${Math.round(max - 273.15)}°`
 	// Min
-	document.querySelector(`.day-${num + 1}-min`).innerHTML = `  ${Math.round(min - 273.15)}°C`
+	document.querySelector(`.day-${num + 1}-min`).innerHTML = `  ${Math.round(min - 273.15)}°`
 }
 
 function renderWeekdays(num, weekday, d) {
