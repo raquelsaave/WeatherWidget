@@ -1,4 +1,4 @@
-var fs = require("fs2");
+var fs = require("fs");
 var path = require("path");
 var express = require("express");
 var app = express();
@@ -20,7 +20,7 @@ fs.readFile(path.join(__dirname, "/assets/city.list.json"), "utf8", function (er
 var router = express.Router();
 
 router.get("/search", function (req, res) {
-	let term = req.query.place.toLowerCase();
+	let term = req.query.sample.toLowerCase();
 	let limit = req.query.limit || 10;
 	let result = places.filter(place => place.name.toLowerCase().indexOf(term) >= 0);
 	console.log(`>> Looking for ${term} found ${result.length} items. Retrieving ${limit}`);
