@@ -4,7 +4,6 @@ function PlaceService() {
 }
 
 PlaceService.prototype = {
-	// getPlaces : function (input,callback) {
 	getPlaces: function (input,callback) {
 		this.request.open("GET", `api/search?sample=${input}`, true);  // `false` makes the request synchronous
 		this.request.onload = function () {

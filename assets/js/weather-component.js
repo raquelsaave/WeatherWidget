@@ -1,32 +1,112 @@
 function WeatherComponent(city, weatherService) {
 	this.city = city
+	this.id = 0;
 	this.weatherService = weatherService
 	this.weatherData = {
-		today:0,
-		forecast:0
+		today: 0,
+		forecast: 0
 	}
 	this.update = this.update.bind(this)
-	this.render = this.render.bind(this)
+	// this.render = this.render.bind(this)
+	this.renderWeather = this.renderWeather.bind(this)
+	this.renderForecast = this.renderForecast.bind(this)
 }
 
 WeatherComponent.prototype = {
 	update: function () {
-		this.weatherService.getWeather(this.city, function (today) {
-			weatherService.getForecast(today.id, 8, function (forecast) {
-				this.weatherData = {
-					today: today,
-					forecast: forecast
-				}
-				this.render(this.weatherData);
-			}.bind(this));
-		}.bind(this));	
-	},	
-	render: function (weatherData) {
+		this.weatherService.getId(this.city)
+			.then((data) => {
+				console.log(data)
+				return data.id
+			})
+			.then((data) => {
+				this.weatherService.getWeather(data)
+					.then((data) => {
+						this.weatherData = {
+							today: {
+								sys: data.sys,
+								main: data.main,
+								wind: data.wind,
+								weater: data.weather[0]
+							}
+						}
+						return this.weatherData
+					})
+					.then((response) => {
+						console.log(response)
+						this.renderWeather(response)
+					})
+				return data
+			})
+			.then((data) => {
+				console.log(this.weatherService)
+				this.weatherService.getForecast(data, 8)
+					.then((data) => {
+						console.log(data)
+					})
+				return data
+			})
+			.catch((error) => {
+				console.log(">> CATCH: We got an error!");
+				console.log(error);
+			})
+			.finally(() => {
+				console.log(">> FINALLY: Promises always execute this code!");
+			});
+		// this.weatherService.getId(this.city, function (data) {
+		// 	this.id = data.id;
+		// 	this.weatherService.getWeather(this.id, function (today) {
+		// 		weatherService.getForecast(today.id, 8, function (forecast) {
+		// 			this.weatherData = {
+		// 				today: today,
+		// 				forecast: forecast
+		// 			}
+		// 			this.render(this.weatherData);
+		// 		}.bind(this));
+		// 	}.bind(this));
+		// }.bind(this));
+	},
+	// render: function (weatherData) {
+	// 	// T O D A Y
+	// 	var today = weatherData.today
+	// 	document.querySelector(".city-and-country-name").innerHTML = `${today.name}, ${today.sys.country}`;
+	// 	// Forecast of the day
+	// 	document.querySelector(".day-forecast").innerHTML = today.weather[0].main;
+	// 	// Main Icon
+	// 	document.querySelector(".weather-img").innerHTML = `<img class="weather-img" src="https://openweathermap.org/img/w/${today.weather[0].icon}.png">`;
+	// 	// Current temperature
+	// 	document.querySelector(".degrees").innerHTML = Math.round(today.main.temp - 273.15);
+	// 	// Day humidity
+	// 	document.querySelector(".day-forecast-humidity").innerHTML = `Humidity: ${today.main.humidity}%`
+
+	// 	// Wind speed
+	// 	document.querySelector(".day-forecast-wind").innerHTML = `Wind: ${today.wind.speed}`;
+
+	// 	var d = new Date();
+	// 	var weekday = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"]
+	// 	var n = weekday[d.getDay()];
+
+	// 	// Get day
+	// 	var hour = d.getHours();
+	// 	var minutes = d.getMinutes();
+	// 	document.querySelector(".week-day-hour").innerHTML = `${n},   ${hour}:${minutes}`
+	// 	document.getElementById("day1").innerHTML = n;
+	// 	for (let i = 2; i < 9; i++) {
+	// 		renderWeekdays(i, weekday, d)
+	// 	}
+
+	// 	// F O R E C A S T
+	// 	var forecast = weatherData.forecast;
+	// 	for (let i = 0; i < 8; i++) {
+	// 		renderBundle(i, forecast.list[i].weather[0].icon, forecast.list[i].main.temp_max, forecast.list[i].main.temp_min)
+	// 	}
+
+	// }
+	renderWeather: function (weatherData) {
 		// T O D A Y
-		var today = weatherData.today
-		document.querySelector(".city-and-country-name").innerHTML = `${today.name}, ${today.sys.country}`;
+		document.querySelector(".city-and-country-name").innerHTML = `${weatherData.today.name}, ${weatherData.country}`;
 		// Forecast of the day
-		document.querySelector(".day-forecast").innerHTML = today.weather[0].main;
+		document.querySelector(".day-forecast").innerHTML = weatherData.weather[0].main;
 		// Main Icon
 		document.querySelector(".weather-img").innerHTML = `<img class="weather-img" src="https://openweathermap.org/img/w/${today.weather[0].icon}.png">`;
 		// Current temperature
@@ -49,7 +129,8 @@ WeatherComponent.prototype = {
 		for (let i = 2; i < 9; i++) {
 			renderWeekdays(i, weekday, d)
 		}
-
+	},
+	renderForecast: function (weatherData) {
 		// F O R E C A S T
 		var forecast = weatherData.forecast;
 		for (let i = 0; i < 8; i++) {
@@ -58,6 +139,8 @@ WeatherComponent.prototype = {
 
 	}
 }
+
+
 
 function renderBundle(num, icon, max, min) {
 	// Icon 
