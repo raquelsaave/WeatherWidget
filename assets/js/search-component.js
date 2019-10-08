@@ -13,13 +13,13 @@ SearchComponent.prototype = {
 		// 		this.renderPlaces(this.dataPlaces)
 		// 	}.bind(this))
 		// }.bind(this))
-		this.root.querySelector(".inputPlace").addEventListener("keypress", function () {
+		this.root.querySelector(".inputPlace").addEventListener("keypress", () => {
 			placeService.getPlaces(this.root.querySelector(".inputPlace").value)
 				.then((data) => {
 					this.dataPlaces = data;
-					this.renderPlaces(this.dataPlaces)
-				})
-		}.bind(this))
+					this.renderPlaces(this.dataPlaces);
+				});
+		});
 
 		// this.root.querySelector(".inputPlace").onblur = function () {
 		// 	console.log(this.root)
@@ -37,7 +37,7 @@ SearchComponent.prototype = {
 }
 
 function renderList(dataPlaces) {
-		
+
 	for (let i = 0; i < dataPlaces.length; i++) {
 		var newDiv = document.createElement("div");
 		newDiv.setAttribute("class", "search-block")

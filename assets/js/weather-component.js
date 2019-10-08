@@ -1,7 +1,6 @@
 
-function WeatherComponent(city, weatherService) {
-	this.city = city
-	this.id = 0;
+function WeatherComponent(cityId, weatherService) {
+	this.cityId = cityId
 	this.weatherService = weatherService
 	this.weatherData = {
 		today: 0,
@@ -42,8 +41,8 @@ WeatherComponent.prototype = {
 		// 	});
 
 		let promises = [
-			this.weatherService.getWeather(4005539),
-			this.weatherService.getForecast(4005539, 8)
+			this.weatherService.getWeather(this.cityId),
+			this.weatherService.getForecast(this.cityId, 8)
 		]
 		Promise.all(promises)
 			.then((response) => {
