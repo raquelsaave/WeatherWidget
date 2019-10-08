@@ -19,41 +19,38 @@ SearchComponent.prototype = {
 	},
 	renderPlaces: function (dataPlaces) {
 		console.log(dataPlaces)
-		renderList(dataPlaces);
+		//remover los buscados anteriormente
+		var currentDiv = this.root.querySelector(".results")
+		removeChild(currentDiv);
+
+		for (let i = 0; i < dataPlaces.length; i++) {
+			//agregar nuevos li´s
+			var newDiv = document.createElement("li");
+			newDiv.setAttribute("class", "results-items")
+			newDiv.setAttribute("id", dataPlaces[i].id)
+			var newContent = document.createTextNode(`${dataPlaces[i].name} , ${dataPlaces[i].country}`);
+			newDiv.appendChild(newContent); //añade texto al div creado. 
+
+			//obtener IDs
+			newDiv.addEventListener("click", (event) => {
+				let item = event.target.closest("li")
+				let cityId = item.getAttribute("id")
+				console.log(cityId)
+
+				let weatherComponent = new WeatherComponent(cityId, weatherService)
+				weatherComponent.update();
+
+				removeChild(currentDiv);
+				this.root.querySelector(".inputPlace").value = ""
+				// currentDiv.setAttribute("class", "results")
+			})
+			currentDiv.appendChild(newDiv);
+		}
 	}
 }
 
-function renderList(dataPlaces) {
-	//remover los buscados anteriormente
-	var currentDiv = document.querySelector(".list-of-places")
-	currentDiv.setAttribute("class", "format-list-of-places list-of-places")
-	while (currentDiv.firstChild) {
-		currentDiv.removeChild(currentDiv.firstChild);
-	}
-
-	for (let i = 0; i < dataPlaces.length; i++) {
-		//agregar nuevos li´s
-		var newDiv = document.createElement("li");
-		newDiv.setAttribute("class", "search-block")
-		newDiv.setAttribute("id", dataPlaces[i].id)
-		var newContent = document.createTextNode(`${dataPlaces[i].name} , ${dataPlaces[i].country}`);
-		newDiv.appendChild(newContent); //añade texto al div creado. 
-
-		//obtener IDs
-		newDiv.addEventListener("click", (event) => {
-			let item = event.target.closest("li")
-			let cityId = item.getAttribute("id")
-			console.log(cityId)
-
-			let weatherComponent = new WeatherComponent(cityId, weatherService)
-			weatherComponent.update();
-
-			while (currentDiv.firstChild) {
-				currentDiv.removeChild(currentDiv.firstChild);
-			}
-			document.querySelector(".inputPlace").value = ""
-			currentDiv.setAttribute("class", "list-of-places")
-		})
-		currentDiv.appendChild(newDiv);
+function removeChild(parentNode) {
+	while (parentNode.firstChild) {
+		parentNode.removeChild(parentNode.firstChild);
 	}
 }

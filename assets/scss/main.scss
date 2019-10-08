@@ -20,31 +20,36 @@ header.mdl-layout__header {
       margin-left: 20px;
       color: $textIcons;
     }
-    .new-search {
-      .mdl-textfield {
-        padding: 20px 0px 5px 0px;
+  }
+}
+
+/*Search form*/
+.search-form {
+  .query-input {
+    padding: 20px 0px 5px 0px;
+  }
+
+    .results {
+      width: 210px;
+      position: absolute;
+      margin: 0;
+      margin-right: 30px;
+      color: $primaryText;
+      list-style: none;
+      border: 1px solid $dividerColor;
+      border-radius: 1.5%;
+      background-color: white;
+      .results-items {
+        padding: 10px;
+        &:hover {
+          background: $primaryColor;
+          color: $textIcons;
+          cursor:pointer;
       }
-      .format-list-of-places {
-        width: 210px;
-        position: absolute;
-        margin: 0;
-        margin-right: 30px;
-        color: $primaryText;
-        list-style: none;
-        border: 1px solid $dividerColor;
-        border-radius: 1.5%;
-        background-color: white;
-        .search-block {
-          padding: 10px;
-          &:hover {
-            background: $primaryColor;
-            color: $textIcons;
-            cursor:pointer;
-        }
-        }
       }
     }
-  }
+  
+  
 }
 
 .mdl-layout__content {

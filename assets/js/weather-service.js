@@ -5,10 +5,10 @@ function WeatherService(API_ID) {
 }
 
 WeatherService.prototype = {
-	getWeather: function (city_ID) {
+	getWeather: function (cityId) {
 		return new Promise((resolve, reject) => {
 			let request = new XMLHttpRequest();
-			request.open("GET", `https://api.openweathermap.org/data/2.5/weather?id=${city_ID}&APPID=${this.API}`, true);
+			request.open("GET", `https://api.openweathermap.org/data/2.5/weather?id=${cityId}&APPID=${this.API}`, true);
 			request.onload = function () {
 				resolve(JSON.parse(this.response))
 			};
@@ -18,10 +18,10 @@ WeatherService.prototype = {
 			request.send(null);
 		})
 	},
-	getForecast: function (city_ID, numDays) {
+	getForecast: function (cityId, numDays) {
 		return new Promise((resolve, reject) => {
 			let request = new XMLHttpRequest();
-			request.open("GET", `https://api.openweathermap.org/data/2.5/forecast?id=${city_ID}&cnt=${numDays}&APPID=${this.API}`, true);  // `false` makes the request synchronous
+			request.open("GET", `https://api.openweathermap.org/data/2.5/forecast?id=${cityId}&cnt=${numDays}&APPID=${this.API}`, true);  // `false` makes the request synchronous
 			request.onload = function () {
 				resolve(JSON.parse(this.response));
 			};
