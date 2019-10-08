@@ -26,6 +26,7 @@ SearchComponent.prototype = {
 function renderList(dataPlaces) {
 	//remover los buscados anteriormente
 	var currentDiv = document.querySelector(".list-of-places")
+	currentDiv.setAttribute("class", "format-list-of-places list-of-places")
 	while (currentDiv.firstChild) {
 		currentDiv.removeChild(currentDiv.firstChild);
 	}
@@ -46,6 +47,12 @@ function renderList(dataPlaces) {
 
 			let weatherComponent = new WeatherComponent(cityId, weatherService)
 			weatherComponent.update();
+
+			while (currentDiv.firstChild) {
+				currentDiv.removeChild(currentDiv.firstChild);
+			}
+			document.querySelector(".inputPlace").value = ""
+			currentDiv.setAttribute("class", "list-of-places")
 		})
 		currentDiv.appendChild(newDiv);
 	}

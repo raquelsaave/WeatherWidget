@@ -7,6 +7,10 @@ $accentColor: #607d8b;
 $textIcons: #ffffff;
 $dividerColor: #bdbdbd;
 
+ul {
+  padding: 0px;
+}
+
 header.mdl-layout__header {
   background-color: $darkPrimaryColor;
   .mdl-layout__header-row {
@@ -16,18 +20,28 @@ header.mdl-layout__header {
       margin-left: 20px;
       color: $textIcons;
     }
-    .list-of-places {
-      position: absolute;
-      margin: 0;
-      color: $primaryText;
-      list-style: none;
-      // background-color:  $lightPrimaryColor;
-      padding: 10px;
-      li {
-        &:hover {
-          background: $accentColor;
-          cursor:pointer;
+    .new-search {
+      .mdl-textfield {
+        padding: 20px 0px 5px 0px;
       }
+      .format-list-of-places {
+        width: 210px;
+        position: absolute;
+        margin: 0;
+        margin-right: 30px;
+        color: $primaryText;
+        list-style: none;
+        border: 1px solid $dividerColor;
+        border-radius: 1.5%;
+        background-color: white;
+        .search-block {
+          padding: 10px;
+          &:hover {
+            background: $primaryColor;
+            color: $textIcons;
+            cursor:pointer;
+        }
+        }
       }
     }
   }
