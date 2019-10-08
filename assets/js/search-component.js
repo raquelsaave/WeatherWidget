@@ -6,15 +6,21 @@ function SearchComponent(placeService, root) {
 }
 
 SearchComponent.prototype = {
-	update : function () {
-
-
-		this.root.querySelector(".inputPlace").addEventListener("keypress",function () {
-			placeService.getPlaces(this.root.querySelector(".inputPlace").value,function (data) {
-				this.dataPlaces = data;
-				this.renderPlaces(this.dataPlaces)
-			}.bind(this))
+	update: function () {
+		// this.root.querySelector(".inputPlace").addEventListener("keypress",function () {
+		// 	placeService.getPlaces(this.root.querySelector(".inputPlace").value,function (data) {
+		// 		this.dataPlaces = data;
+		// 		this.renderPlaces(this.dataPlaces)
+		// 	}.bind(this))
+		// }.bind(this))
+		this.root.querySelector(".inputPlace").addEventListener("keypress", function () {
+			placeService.getPlaces(this.root.querySelector(".inputPlace").value)
+				.then((data) => {
+					this.dataPlaces = data;
+					this.renderPlaces(this.dataPlaces)
+				})
 		}.bind(this))
+
 		// this.root.querySelector(".inputPlace").onblur = function () {
 		// 	console.log(this.root)
 		// 	placeService.getPlaces(this.root.querySelector(".inputPlace").value,function (data) {
@@ -31,6 +37,7 @@ SearchComponent.prototype = {
 }
 
 function renderList(dataPlaces) {
+		
 	for (let i = 0; i < dataPlaces.length; i++) {
 		var newDiv = document.createElement("div");
 		newDiv.setAttribute("class", "search-block")
