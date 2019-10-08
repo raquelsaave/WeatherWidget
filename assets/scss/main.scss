@@ -16,6 +16,20 @@ header.mdl-layout__header {
       margin-left: 20px;
       color: $textIcons;
     }
+    .list-of-places {
+      position: absolute;
+      margin: 0;
+      color: $primaryText;
+      list-style: none;
+      // background-color:  $lightPrimaryColor;
+      padding: 10px;
+      li {
+        &:hover {
+          background: $accentColor;
+          cursor:pointer;
+      }
+      }
+    }
   }
 }
 

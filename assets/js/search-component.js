@@ -7,28 +7,15 @@ function SearchComponent(placeService, root) {
 
 SearchComponent.prototype = {
 	update: function () {
-		// this.root.querySelector(".inputPlace").addEventListener("keypress",function () {
-		// 	placeService.getPlaces(this.root.querySelector(".inputPlace").value,function (data) {
-		// 		this.dataPlaces = data;
-		// 		this.renderPlaces(this.dataPlaces)
-		// 	}.bind(this))
-		// }.bind(this))
 		this.root.querySelector(".inputPlace").addEventListener("keypress", () => {
-			placeService.getPlaces(this.root.querySelector(".inputPlace").value)
-				.then((data) => {
-					this.dataPlaces = data;
-					this.renderPlaces(this.dataPlaces);
-				});
+			if (this.root.querySelector(".inputPlace").value.length >= 3) {
+				placeService.getPlaces(this.root.querySelector(".inputPlace").value)
+					.then((data) => {
+						this.dataPlaces = data;
+						this.renderPlaces(this.dataPlaces);
+					});
+			}
 		});
-
-		// this.root.querySelector(".inputPlace").onblur = function () {
-		// 	console.log(this.root)
-		// 	placeService.getPlaces(this.root.querySelector(".inputPlace").value,function (data) {
-		// 		console.log(data);
-		// 		this.dataPlaces = data;
-		// 		this.renderPlaces(this.dataPlaces)
-		// 	}.bind(this))
-		// }.bind(this);
 	},
 	renderPlaces: function (dataPlaces) {
 		console.log(dataPlaces)
@@ -37,13 +24,29 @@ SearchComponent.prototype = {
 }
 
 function renderList(dataPlaces) {
+	//remover los buscados anteriormente
+	var currentDiv = document.querySelector(".list-of-places")
+	while (currentDiv.firstChild) {
+		currentDiv.removeChild(currentDiv.firstChild);
+	}
 
 	for (let i = 0; i < dataPlaces.length; i++) {
-		var newDiv = document.createElement("div");
+		//agregar nuevos li´s
+		var newDiv = document.createElement("li");
 		newDiv.setAttribute("class", "search-block")
+		newDiv.setAttribute("id", dataPlaces[i].id)
 		var newContent = document.createTextNode(`${dataPlaces[i].name} , ${dataPlaces[i].country}`);
 		newDiv.appendChild(newContent); //añade texto al div creado. 
-		var currentDiv = document.getElementById("content");
-		document.body.appendChild(newDiv, currentDiv);
+
+		//obtener IDs
+		newDiv.addEventListener("click", (event) => {
+			let item = event.target.closest("li")
+			let cityId = item.getAttribute("id")
+			console.log(cityId)
+
+			let weatherComponent = new WeatherComponent(cityId, weatherService)
+			weatherComponent.update();
+		})
+		currentDiv.appendChild(newDiv);
 	}
 }

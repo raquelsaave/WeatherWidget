@@ -60,19 +60,6 @@ WeatherComponent.prototype = {
 				console.log(err)
 			})
 
-
-		// this.weatherService.getId(this.city, function (data) {
-		// 	this.id = data.id;
-		// 	this.weatherService.getWeather(this.id, function (today) {
-		// 		weatherService.getForecast(today.id, 8, function (forecast) {
-		// 			this.weatherData = {
-		// 				today: today,
-		// 				forecast: forecast
-		// 			}
-		// 			this.render(this.weatherData);
-		// 		}.bind(this));
-		// 	}.bind(this));
-		// }.bind(this));
 	},
 	render: function (weatherData) {
 		// T O D A Y

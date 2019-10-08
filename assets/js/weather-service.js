@@ -5,19 +5,6 @@ function WeatherService(API_ID) {
 }
 
 WeatherService.prototype = {
-	// getId: function (city) {
-	// 	return new Promise((resolve, reject) => {
-	// 		this.request.open("GET", `https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${this.API}`, true);
-	// 		this.request.onload = function () {
-	// 			resolve(JSON.parse(this.response))
-	// 		};
-	// 		this.request.onerror = function() {
-	// 			reject(">> There was an error while loading the API...")
-	// 		}
-	// 		this.request.send(null);
-
-	// 	});
-	// },
 	getWeather: function (city_ID) {
 		return new Promise((resolve, reject) => {
 			let request = new XMLHttpRequest();
