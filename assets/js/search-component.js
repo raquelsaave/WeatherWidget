@@ -9,6 +9,8 @@ SearchComponent.prototype = {
 	update: function () {
 		this.root.querySelector(".inputPlace").addEventListener("keypress", () => {
 			if (this.root.querySelector(".inputPlace").value.length >= 3) {
+				// var currentDiv = this.root.querySelector(".results-list")
+				// currentDiv.classList.toggle("results")
 				placeService.getPlaces(this.root.querySelector(".inputPlace").value)
 					.then((data) => {
 						this.dataPlaces = data;
@@ -21,10 +23,10 @@ SearchComponent.prototype = {
 		console.log(dataPlaces)
 		//remover los buscados anteriormente
 		var currentDiv = this.root.querySelector(".results-list")
-		currentDiv.classList.toggle("results")
-		console.log(currentDiv.getAttribute("class"))
+		currentDiv.classList.toggle("results", currentDiv.getAttribute("class").includes("results"))
 		removeChild(currentDiv);
-		
+		console.log(currentDiv.getAttribute("class"))
+
 		for (let i = 0; i < dataPlaces.length; i++) {
 			// Crear li's
 			var newDiv = createLi(dataPlaces[i])
@@ -40,6 +42,7 @@ SearchComponent.prototype = {
 
 				removeChild(currentDiv);
 				this.root.querySelector(".inputPlace").value = ""
+				currentDiv.classList.remove("results") 
 			})
 			currentDiv.appendChild(newDiv);
 		}
@@ -49,7 +52,7 @@ SearchComponent.prototype = {
 function createLi(dataPlaces) {
 	var newDiv = document.createElement("li");
 	newDiv.setAttribute("class", "results-items")
-	
+
 	newDiv.setAttribute("id", dataPlaces.id)
 	var newContent = document.createTextNode(`${dataPlaces.name} , ${dataPlaces.country}`);
 	newDiv.appendChild(newContent); //añade texto al div creado. 
