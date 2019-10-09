@@ -28,28 +28,25 @@ header.mdl-layout__header {
   .query-input {
     padding: 20px 0px 5px 0px;
   }
-
-    .results {
-      width: 210px;
-      position: absolute;
-      margin: 0;
-      margin-right: 30px;
-      color: $primaryText;
-      list-style: none;
-      border: 1px solid $dividerColor;
-      border-radius: 1.5%;
-      background-color: white;
-      .results-items {
-        padding: 10px;
-        &:hover {
-          background: $primaryColor;
-          color: $textIcons;
-          cursor:pointer;
-      }
+  .results {
+    width: 210px;
+    position: absolute;
+    margin: 0;
+    margin-right: 30px;
+    color: $primaryText;
+    list-style: none;
+    border: 1px solid $dividerColor;
+    border-radius: 1.5%;
+    background-color: white;
+    .results-items {
+      padding: 10px;
+      &:hover {
+        background: $primaryColor;
+        color: $textIcons;
+        cursor: pointer;
       }
     }
-  
-  
+  }
 }
 
 .mdl-layout__content {
@@ -94,8 +91,8 @@ header.mdl-layout__header {
           .degrees-container {
             display: flex;
             .degrees {
-              padding-top:20px;
-              padding-right: 5px; 
+              padding-top: 20px;
+              padding-right: 5px;
               font-size: 64px;
             }
           }

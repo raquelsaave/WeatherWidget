@@ -20,16 +20,14 @@ SearchComponent.prototype = {
 	renderPlaces: function (dataPlaces) {
 		console.log(dataPlaces)
 		//remover los buscados anteriormente
-		var currentDiv = this.root.querySelector(".results")
+		var currentDiv = this.root.querySelector(".results-list")
+		currentDiv.classList.toggle("results")
+		console.log(currentDiv.getAttribute("class"))
 		removeChild(currentDiv);
-
+		
 		for (let i = 0; i < dataPlaces.length; i++) {
-			//agregar nuevos li´s
-			var newDiv = document.createElement("li");
-			newDiv.setAttribute("class", "results-items")
-			newDiv.setAttribute("id", dataPlaces[i].id)
-			var newContent = document.createTextNode(`${dataPlaces[i].name} , ${dataPlaces[i].country}`);
-			newDiv.appendChild(newContent); //añade texto al div creado. 
+			// Crear li's
+			var newDiv = createLi(dataPlaces[i])
 
 			//obtener IDs
 			newDiv.addEventListener("click", (event) => {
@@ -42,11 +40,20 @@ SearchComponent.prototype = {
 
 				removeChild(currentDiv);
 				this.root.querySelector(".inputPlace").value = ""
-				// currentDiv.setAttribute("class", "results")
 			})
 			currentDiv.appendChild(newDiv);
 		}
 	}
+}
+
+function createLi(dataPlaces) {
+	var newDiv = document.createElement("li");
+	newDiv.setAttribute("class", "results-items")
+	
+	newDiv.setAttribute("id", dataPlaces.id)
+	var newContent = document.createTextNode(`${dataPlaces.name} , ${dataPlaces.country}`);
+	newDiv.appendChild(newContent); //añade texto al div creado. 
+	return newDiv
 }
 
 function removeChild(parentNode) {
