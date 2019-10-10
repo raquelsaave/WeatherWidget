@@ -23,9 +23,11 @@ SearchComponent.prototype = {
 		console.log(dataPlaces)
 		//remover los buscados anteriormente
 		var currentDiv = this.root.querySelector(".results-list")
+		console.log(currentDiv.classList.contains("results"));
 		currentDiv.classList.toggle("results", currentDiv.getAttribute("class").includes("results"))
 		removeChild(currentDiv);
 		console.log(currentDiv.getAttribute("class"))
+		console.log(currentDiv.getAttribute("class").includes("results"))
 
 		for (let i = 0; i < dataPlaces.length; i++) {
 			// Crear li's
@@ -43,6 +45,7 @@ SearchComponent.prototype = {
 				removeChild(currentDiv);
 				this.root.querySelector(".inputPlace").value = ""
 				currentDiv.classList.remove("results") 
+				console.log("click" + currentDiv.getAttribute("class"))
 			})
 			currentDiv.appendChild(newDiv);
 		}

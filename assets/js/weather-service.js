@@ -16,6 +16,7 @@ WeatherService.prototype = {
 				reject(">> There was an error while loading the API...")
 			}
 			request.send(null);
+			// reqListener(`https://api.openweathermap.org/data/2.5/weather?id=${cityId}&APPID=${this.API}`,resolve,reject)
 		})
 	},
 	getForecast: function (cityId, numDays) {
@@ -29,6 +30,19 @@ WeatherService.prototype = {
 				reject(">> There was an error while loading the API...")
 			}
 			request.send(null);
+			// reqListener(`https://api.openweathermap.org/data/2.5/forecast?id=${cityId}&cnt=${numDays}&APPID=${this.API}`,resolve,reject)
 		})
 	}
 }
+
+// function reqListener(source,resolve,reject) {
+// 	let request = new XMLHttpRequest();
+// 	request.open("GET", source, true);
+// 	request.onload = function () {
+// 		resolve(JSON.parse(this.response));
+// 	};
+// 	request.onerror = function() {
+// 		reject(">> There was an error while loading the API...")
+// 	}
+// 	request.send(null);
+// }

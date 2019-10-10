@@ -10,6 +10,9 @@ $dividerColor: #bdbdbd;
 ul {
   padding: 0px;
 }
+body {
+  background-color: #ededed;
+}
 
 header.mdl-layout__header {
   background-color: $darkPrimaryColor;
@@ -23,12 +26,17 @@ header.mdl-layout__header {
   }
 }
 
+.mdl-layout__content {
+  width:100%
+}
+
 /*Search form*/
 .search-form {
   .query-input {
     padding: 20px 0px 5px 0px;
   }
   .results {
+    z-index: 10;
     width: 210px;
     position: absolute;
     margin: 0;
@@ -109,8 +117,13 @@ header.mdl-layout__header {
           // border: 0.3px solid $dividerColor;
           padding: 5px;
           display: grid;
+          // display:flex;
+          // flex-direction: column;
           text-align: center;
           margin: 5px;
+          .weather-img-bundle {
+            margin: 0 auto;
+          }
           .max {
             color: $primaryText;
             &::after {
@@ -124,6 +137,12 @@ header.mdl-layout__header {
       }
     }
   }
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: -1px 2px 4px rgba(0,0,0,.25), 1px 1px 3px rgba(0,0,0,.1);
 }
 
 .material-icons {
