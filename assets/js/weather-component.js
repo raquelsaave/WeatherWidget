@@ -188,10 +188,10 @@ function reqListener(source, callback) {
 function renderBundle(forecast) {
 	// Get date
 	var d = new Date();
-	var weekday = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"]
+	var weekday = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri","Sat"]
 	var arrayOfDays = []
 	var object = {}
-	for (let i = 0; i < 8; i++) {
+	for (let i = 0; i < weekday.length/2; i++) {
 		object = {
 			dayBundle: weekday[d.getDay() + i + 1],
 			icon: `https://openweathermap.org/img/w/${forecast[i].weather[0].icon}.png`,
