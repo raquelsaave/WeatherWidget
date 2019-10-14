@@ -1,8 +1,12 @@
+let dashboardRoot =  document.querySelector(".page-content");
+
 function SearchComponent(placeService, root) {
 	this.placeService = placeService;
 	this.root = root;
 	this.dataPlaces = "0";
 	this.renderPlaces = this.renderPlaces.bind(this);
+	this.onSelect = this.onSelect.bind(this)
+
 }
 
 SearchComponent.prototype = {
@@ -37,19 +41,21 @@ SearchComponent.prototype = {
 			newDiv.addEventListener("click", (event) => {
 				let item = event.target.closest("li")
 				let cityId = item.getAttribute("id")
-				console.log(cityId)
-
-				let weatherComponent = new WeatherComponent(cityId, weatherService)
-				weatherComponent.update();
-
+				this.onSelect(cityId)
 				removeChild(currentDiv);
 				this.root.querySelector(".inputPlace").value = ""
-				currentDiv.classList.remove("results") 
-				console.log("click" + currentDiv.getAttribute("class"))
+				currentDiv.classList.remove("results")
+				// console.log("click" + currentDiv.getAttribute("class"))
 			})
 			currentDiv.appendChild(newDiv);
 		}
+	},
+	onSelect: (cityId) => {
+		console.log(cityId)
+		let dashboard = new DashboardComponent(dashboardRoot)
+		dashboard.addCard(cityId)
 	}
+
 }
 
 function createLi(dataPlaces) {
@@ -67,3 +73,4 @@ function removeChild(parentNode) {
 		parentNode.removeChild(parentNode.firstChild);
 	}
 }
+

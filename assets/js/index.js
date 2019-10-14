@@ -10,3 +10,5 @@ let placeService = new PlaceService();
 
 let searchComponent =  new SearchComponent(placeService,root);
 searchComponent.update();
+
+// 
