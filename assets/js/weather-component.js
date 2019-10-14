@@ -67,8 +67,9 @@ WeatherComponent.prototype = {
 
 			let template = document.createElement("template");
 			template.innerHTML = newCard;
-			document.querySelector(".page-content").appendChild(template.content)
-			console.log(newCard)
+			addCard(template.content)
+			// this.root.querySelector(".page-content").appendChild(template.content)
+			// template.content;
 		});
 
 	}

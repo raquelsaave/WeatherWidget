@@ -1,12 +1,8 @@
-let dashboardRoot =  document.querySelector(".page-content");
-
 function SearchComponent(placeService, root) {
 	this.placeService = placeService;
 	this.root = root;
 	this.dataPlaces = "0";
 	this.renderPlaces = this.renderPlaces.bind(this);
-	this.onSelect = this.onSelect.bind(this)
-
 }
 
 SearchComponent.prototype = {
@@ -18,20 +14,20 @@ SearchComponent.prototype = {
 				placeService.getPlaces(this.root.querySelector(".inputPlace").value)
 					.then((data) => {
 						this.dataPlaces = data;
-						this.renderPlaces(this.dataPlaces);
+						this.renderPlaces(this.dataPlaces,onSelect);
 					});
 			}
 		});
 	},
-	renderPlaces: function (dataPlaces) {
+	renderPlaces: function (dataPlaces,onSelect) {
 		console.log(dataPlaces)
 		//remover los buscados anteriormente
 		var currentDiv = this.root.querySelector(".results-list")
-		console.log(currentDiv.classList.contains("results"));
+		// console.log(currentDiv.classList.contains("results"));
 		currentDiv.classList.toggle("results", currentDiv.getAttribute("class").includes("results"))
 		removeChild(currentDiv);
-		console.log(currentDiv.getAttribute("class"))
-		console.log(currentDiv.getAttribute("class").includes("results"))
+		// console.log(currentDiv.getAttribute("class"))
+		// console.log(currentDiv.getAttribute("class").includes("results"))
 
 		for (let i = 0; i < dataPlaces.length; i++) {
 			// Crear li's
@@ -41,7 +37,7 @@ SearchComponent.prototype = {
 			newDiv.addEventListener("click", (event) => {
 				let item = event.target.closest("li")
 				let cityId = item.getAttribute("id")
-				this.onSelect(cityId)
+				onSelect(cityId)
 				removeChild(currentDiv);
 				this.root.querySelector(".inputPlace").value = ""
 				currentDiv.classList.remove("results")
@@ -50,12 +46,6 @@ SearchComponent.prototype = {
 			currentDiv.appendChild(newDiv);
 		}
 	},
-	onSelect: (cityId) => {
-		console.log(cityId)
-		let dashboard = new DashboardComponent(dashboardRoot)
-		dashboard.addCard(cityId)
-	}
-
 }
 
 function createLi(dataPlaces) {
