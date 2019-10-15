@@ -28,14 +28,18 @@ WeatherComponent.prototype = {
 					weather: response[0].weather[0]
 				}
 				this.weatherData.forecast = response[1].list
-				this.render(this.weatherData);
+				this.render(this.weatherData,function (data) {
+					console.log(data)
+					dashboard.getCard(data);
+					// appendCard(data)
+				});
 			})
-			.catch((err) => {
+			.catch((err) => 	{
 				console.log(err)
 			})
 
 	},
-	render: function (weatherData) {
+	render: function (weatherData,callbackRender) {
 		var today = weatherData.today
 		var forecast = weatherData.forecast;
 
@@ -67,11 +71,10 @@ WeatherComponent.prototype = {
 
 			let template = document.createElement("template");
 			template.innerHTML = newCard;
-			addCard(template.content)
+			callbackRender(template.content)
 			// this.root.querySelector(".page-content").appendChild(template.content)
 			// template.content;
 		});
-
 	}
 }
 

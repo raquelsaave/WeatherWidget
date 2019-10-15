@@ -9,25 +9,24 @@ SearchComponent.prototype = {
 	update: function () {
 		this.root.querySelector(".inputPlace").addEventListener("keypress", () => {
 			if (this.root.querySelector(".inputPlace").value.length >= 3) {
-				// var currentDiv = this.root.querySelector(".results-list")
-				// currentDiv.classList.toggle("results")
 				placeService.getPlaces(this.root.querySelector(".inputPlace").value)
 					.then((data) => {
 						this.dataPlaces = data;
-						this.renderPlaces(this.dataPlaces,onSelect);
+						this.renderPlaces(this.dataPlaces,function(data) {
+							console.log(data)
+							// onSelect(data)
+							dashboard.addCard(data)
+						});
 					});
 			}
 		});
 	},
-	renderPlaces: function (dataPlaces,onSelect) {
-		console.log(dataPlaces)
+	renderPlaces: function (dataPlaces,callback) {
+		// console.log(dataPlaces)
 		//remover los buscados anteriormente
 		var currentDiv = this.root.querySelector(".results-list")
-		// console.log(currentDiv.classList.contains("results"));
 		currentDiv.classList.toggle("results", currentDiv.getAttribute("class").includes("results"))
 		removeChild(currentDiv);
-		// console.log(currentDiv.getAttribute("class"))
-		// console.log(currentDiv.getAttribute("class").includes("results"))
 
 		for (let i = 0; i < dataPlaces.length; i++) {
 			// Crear li's
@@ -37,7 +36,7 @@ SearchComponent.prototype = {
 			newDiv.addEventListener("click", (event) => {
 				let item = event.target.closest("li")
 				let cityId = item.getAttribute("id")
-				onSelect(cityId)
+				callback(cityId)
 				removeChild(currentDiv);
 				this.root.querySelector(".inputPlace").value = ""
 				currentDiv.classList.remove("results")
