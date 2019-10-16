@@ -6,7 +6,7 @@ function SearchComponent(placeService, root) {
 }
 
 SearchComponent.prototype = {
-	update: function () {
+	update: function (callback) {
 		this.root.querySelector(".inputPlace").addEventListener("keypress", () => {
 			if (this.root.querySelector(".inputPlace").value.length >= 3) {
 				placeService.getPlaces(this.root.querySelector(".inputPlace").value)
@@ -15,7 +15,7 @@ SearchComponent.prototype = {
 						this.renderPlaces(this.dataPlaces,function(data) {
 							console.log(data)
 							// onSelect(data)
-							dashboard.addCard(data)
+							callback(data)
 						});
 					});
 			}

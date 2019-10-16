@@ -12,7 +12,7 @@ function WeatherComponent(cityId, weatherService) {
 
 
 WeatherComponent.prototype = {
-	update: function () {
+	update: function (callback) {
 		let promises = [
 			this.weatherService.getWeather(this.cityId),
 			this.weatherService.getForecast(this.cityId, 8)
@@ -30,7 +30,7 @@ WeatherComponent.prototype = {
 				this.weatherData.forecast = response[1].list
 				this.render(this.weatherData,function (data) {
 					console.log(data)
-					dashboard.getCard(data);
+					callback(data);
 					// appendCard(data)
 				});
 			})
