@@ -24,4 +24,10 @@ describe("PlaceService", () => {
 		});
 	});
 
+	it("null", () => {
+		return placeService.getPlaces(null)
+			.then(places => {
+				console.log(places)
+			});
+	});
 });
