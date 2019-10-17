@@ -15,18 +15,21 @@ describe("WeatherService", () => {
 				expect(data.name).toBe("Guadalajara")
 			});
 	});
+	
 	it("should return an array of forecast for 8 days", () => {
 		return weatherService.getForecast(4005539,8)
 			.then((data) => {
 				expect(data.list.length).toEqual(8)
 			});
 	});
+
 	it("should return a bad HTTP request (code 400)", () => {
 		return weatherService.getWeather(null)
 			.then((data) => {
 				expect(data.cod).toBe("400")
 			});
 	});
+
 	it("should return OK (code 200)", () => {
 		return weatherService.getWeather(4005539)
 			.then((data) => {

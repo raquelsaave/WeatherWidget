@@ -23,11 +23,4 @@ describe("PlaceService", () => {
 			expect(places.length).toEqual(10);
 		});
 	});
-
-	it("null", () => {
-		return placeService.getPlaces(null)
-			.then(places => {
-				console.log(places)
-			});
-	});
 });
