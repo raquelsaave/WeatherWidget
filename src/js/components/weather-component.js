@@ -1,4 +1,3 @@
-
 function WeatherComponent(cityId, weatherService) {
 	this.cityId = cityId
 	this.weatherService = weatherService
@@ -19,7 +18,7 @@ WeatherComponent.prototype = {
 		]
 		Promise.all(promises)
 			.then((response) => {
-				console.log(response)
+				// console.log(response)
 				this.weatherData.today = {
 					name: response[0].name,
 					sys: response[0].sys,
@@ -29,9 +28,8 @@ WeatherComponent.prototype = {
 				}
 				this.weatherData.forecast = response[1].list
 				this.render(this.weatherData,function (data) {
-					console.log(data)
+					// console.log(data)
 					callback(data);
-					// appendCard(data)
 				});
 			})
 			.catch((err) => 	{
@@ -52,9 +50,9 @@ WeatherComponent.prototype = {
 		var hour = d.getHours();
 		var minutes = d.getMinutes();
 
-		console.log(forecast)
+		// console.log(forecast)
 		reqListener("./assets/templates/card.html", function callback(resp) {
-			console.log(today)
+			// console.log(today)
 			let newCard = Mustache.render(resp, {
 				city: `${today.name}, ${today.sys.country}`,
 				day: `${n},   ${hour}:${minutes}`,
@@ -65,15 +63,9 @@ WeatherComponent.prototype = {
 				viento: `Wind: ${today.wind.speed}  km/h`,
 				forecast : renderBundle(forecast)
 			});
-
-			//Removemos el card anterior
-			// document.querySelector(".page-content").removeChild(document.querySelector(".card"));
-
 			let template = document.createElement("template");
 			template.innerHTML = newCard;
 			callbackRender(template.content)
-			// this.root.querySelector(".page-content").appendChild(template.content)
-			// template.content;
 		});
 	}
 }
@@ -106,3 +98,5 @@ function renderBundle(forecast) {
 	}
 	return arrayOfDays
 }
+
+export default WeatherComponent;

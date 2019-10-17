@@ -9,12 +9,11 @@ SearchComponent.prototype = {
 	update: function (callback) {
 		this.root.querySelector(".inputPlace").addEventListener("keypress", () => {
 			if (this.root.querySelector(".inputPlace").value.length >= 3) {
-				placeService.getPlaces(this.root.querySelector(".inputPlace").value)
+				this.placeService.getPlaces(this.root.querySelector(".inputPlace").value)
 					.then((data) => {
 						this.dataPlaces = data;
 						this.renderPlaces(this.dataPlaces,function(data) {
-							console.log(data)
-							// onSelect(data)
+							// console.log(data)
 							callback(data)
 						});
 					});
@@ -63,3 +62,4 @@ function removeChild(parentNode) {
 	}
 }
 
+export default SearchComponent;

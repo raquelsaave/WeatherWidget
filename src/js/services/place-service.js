@@ -18,3 +18,4 @@ PlaceService.prototype = {
 	}
 }
 
+export default PlaceService; 

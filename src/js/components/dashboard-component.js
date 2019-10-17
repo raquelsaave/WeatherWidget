@@ -1,3 +1,5 @@
+import WeatherService from "../services/weather-service.js"
+import WeatherComponent from "../components/weather-component.js"
 const WEATHER_API_KEY = "8d0b7892bc5c02420f1c46dcdb9c2e4d";
 
 function DashboardComponent(root) {
@@ -15,3 +17,5 @@ DashboardComponent.prototype = {
 		});
 	}
 }
+
+export default DashboardComponent; 
