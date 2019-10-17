@@ -6,26 +6,27 @@ function SearchComponent(placeService, root) {
 }
 
 SearchComponent.prototype = {
-	update: function () {
+	update: function (callback) {
 		this.root.querySelector(".inputPlace").addEventListener("keypress", () => {
 			if (this.root.querySelector(".inputPlace").value.length >= 3) {
-				// var currentDiv = this.root.querySelector(".results-list")
-				// currentDiv.classList.toggle("results")
 				placeService.getPlaces(this.root.querySelector(".inputPlace").value)
 					.then((data) => {
 						this.dataPlaces = data;
-						this.renderPlaces(this.dataPlaces);
+						this.renderPlaces(this.dataPlaces,function(data) {
+							console.log(data)
+							// onSelect(data)
+							callback(data)
+						});
 					});
 			}
 		});
 	},
-	renderPlaces: function (dataPlaces) {
-		console.log(dataPlaces)
+	renderPlaces: function (dataPlaces,callback) {
+		// console.log(dataPlaces)
 		//remover los buscados anteriormente
 		var currentDiv = this.root.querySelector(".results-list")
 		currentDiv.classList.toggle("results", currentDiv.getAttribute("class").includes("results"))
 		removeChild(currentDiv);
-		console.log(currentDiv.getAttribute("class"))
 
 		for (let i = 0; i < dataPlaces.length; i++) {
 			// Crear li's
@@ -35,18 +36,15 @@ SearchComponent.prototype = {
 			newDiv.addEventListener("click", (event) => {
 				let item = event.target.closest("li")
 				let cityId = item.getAttribute("id")
-				console.log(cityId)
-
-				let weatherComponent = new WeatherComponent(cityId, weatherService)
-				weatherComponent.update();
-
+				callback(cityId)
 				removeChild(currentDiv);
 				this.root.querySelector(".inputPlace").value = ""
-				currentDiv.classList.remove("results") 
+				currentDiv.classList.remove("results")
+				// console.log("click" + currentDiv.getAttribute("class"))
 			})
 			currentDiv.appendChild(newDiv);
 		}
-	}
+	},
 }
 
 function createLi(dataPlaces) {
@@ -64,3 +62,4 @@ function removeChild(parentNode) {
 		parentNode.removeChild(parentNode.firstChild);
 	}
 }
+
