@@ -1,0 +1,100 @@
+ul {
+  padding: 0px; }
+
+body {
+  background-color: #ededed; }
+
+.mdl-layout__content {
+  width: 100%; }
+  .mdl-layout__content .page-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; }
+
+.card {
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: -1px 2px 4px rgba(0, 0, 0, 0.25), 1px 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  border: 1px solid #bdbdbd;
+  font-family: "Lexend Deca", sans-serif;
+  color: #212121;
+  display: flex;
+  flex-direction: column;
+  margin: 20px; }
+  .card .info-day {
+    display: grid;
+    margin: 10px;
+    font-size: 15px;
+    color: #757575; }
+    .card .info-day .city-and-country-name {
+      font-size: 25px;
+      color: #212121;
+      padding-bottom: 5px; }
+  .card .current-forecast {
+    display: flex;
+    justify-content: space-between; }
+    .card .current-forecast .main-info-left {
+      margin: 10px;
+      display: flex;
+      justify-content: space-evenly; }
+      .card .current-forecast .main-info-left .weather-img {
+        width: 60px; }
+      .card .current-forecast .main-info-left .degrees-container {
+        display: flex; }
+        .card .current-forecast .main-info-left .degrees-container .degrees {
+          padding-top: 20px;
+          padding-right: 5px;
+          font-size: 64px; }
+    .card .current-forecast .main-info-right {
+      display: grid;
+      margin: 10px; }
+  .card .daily-forecast-bundle {
+    display: flex; }
+    .card .daily-forecast-bundle .daily-forecast {
+      padding: 5px;
+      display: grid;
+      text-align: center;
+      margin: 5px; }
+      .card .daily-forecast-bundle .daily-forecast .weather-img-bundle {
+        margin: 0 auto; }
+      .card .daily-forecast-bundle .daily-forecast .max {
+        color: #212121; }
+        .card .daily-forecast-bundle .daily-forecast .max::after {
+          content: "/"; }
+      .card .daily-forecast-bundle .daily-forecast .min {
+        color: #757575; }
+
+header.mdl-layout__header {
+  background-color: #00796b;
+  color: #ffffff; }
+  header.mdl-layout__header .mdl-layout__header-row {
+    background-color: #009688;
+    padding: 0 40px 0 20px; }
+    header.mdl-layout__header .mdl-layout__header-row .mdl-layout-title {
+      margin-left: 20px;
+      color: #ffffff; }
+
+.search-form .query-input {
+  padding: 20px 0px 5px 0px; }
+
+.search-form .results {
+  z-index: 10;
+  width: 210px;
+  position: absolute;
+  margin: 0;
+  margin-right: 30px;
+  color: #212121;
+  list-style: none;
+  border: 1px solid #bdbdbd;
+  border-radius: 1.5%;
+  background-color: white; }
+  .search-form .results .results-items {
+    padding: 10px; }
+    .search-form .results .results-items:hover {
+      background: #009688;
+      color: #ffffff;
+      cursor: pointer; }
+
+/*# sourceMappingURL=main.css.map */

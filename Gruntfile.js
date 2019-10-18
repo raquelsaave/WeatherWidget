@@ -7,7 +7,7 @@ module.exports = function (grunt) {
 		watch: {
 		},
 		stylelint: {
-			all: ["src/scss/*.scss","src/scss/ui/*.scss"]
+			all: ["src/scss/*.scss", "src/scss/ui/*.scss"]
 		},
 		sass: {
 			options: {
@@ -23,15 +23,20 @@ module.exports = function (grunt) {
 			},
 		},
 		eslint: {
-			target: ["src/js/components/*.js","src/js/pages/*.js","src/js/services/*.js"]
+			target: ["src/js/components/*.js", "src/js/pages/*.js", "src/js/services/*.js"]
+		},
+		exec: {
+			webpack: {command: "npm run webpack"},
+			webpackdev: {command: "npm run webpackdev"}
 		}
-
 	});
 
 	grunt.loadNpmTasks("grunt-stylelint");
 	grunt.loadNpmTasks("grunt-sass");
 	grunt.loadNpmTasks("grunt-eslint");
+	grunt.loadNpmTasks("grunt-exec");
 
 	// Default task.
-	grunt.registerTask("default", ["stylelint", "sass", "eslint"]);
+	grunt.registerTask("default", ["stylelint", "sass", "eslint", "exec:webpackdev"]);
+	grunt.registerTask("build", ["stylelint", "sass", "eslint", "exec:webpack"]);
 };

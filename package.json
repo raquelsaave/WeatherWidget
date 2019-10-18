@@ -4,26 +4,37 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "webpack": "webpack",
+    "webpackdev": "webpack --progress --mode=development --devtool cheap-module-eval-source-map",
+    "webpackbuild": "npm run webpack -- --mode production"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "babel-core": "^6.26.3",
     "body-parser": "^1.19.0",
     "connect": "^3.7.0",
+    "core-js": "^3.3.2",
     "express": "^4.17.1",
     "grunt-jslint": "^1.1.15",
     "path": "^0.12.7",
     "serve-static": "^1.14.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/preset-env": "^7.6.3",
+    "babel-loader": "^8.0.6",
     "grunt": "^1.0.4",
     "grunt-eslint": "^22.0.0",
+    "grunt-exec": "^3.0.0",
     "grunt-sass": "^3.1.0",
     "grunt-stylelint": "~0.11.0",
     "node-sass": "^4.12.0",
     "stylelint": "~10.1.0",
-    "stylelint-config-recommended": "~2.2.0"
+    "stylelint-config-recommended": "~2.2.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.9"
   },
   "repository": {
     "type": "git",
