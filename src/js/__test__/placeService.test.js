@@ -1,6 +1,8 @@
-const PlaceService = require("../place-service.js").PlaceService;
+import PlaceService from "../services/place-service.js"
+// const PlaceService = require("../services/place-service.js").PlaceService;
 
 describe("PlaceService", () => {
+	let placeService;
 	beforeAll(() => {
 		placeService = new PlaceService();
 	});

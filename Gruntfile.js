@@ -27,7 +27,8 @@ module.exports = function (grunt) {
 		},
 		exec: {
 			webpack: {command: "npm run webpack"},
-			webpackdev: {command: "npm run webpackdev"}
+			webpackdev: {command: "npm run webpackdev"},
+			jest: {command: "npm test"}
 		}
 	});
 
@@ -37,6 +38,6 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks("grunt-exec");
 
 	// Default task.
-	grunt.registerTask("default", ["stylelint", "sass", "eslint", "exec:webpackdev"]);
-	grunt.registerTask("build", ["stylelint", "sass", "eslint", "exec:webpack"]);
+	grunt.registerTask("default", ["stylelint", "sass", "eslint", "exec:jest","exec:webpackdev"]);
+	grunt.registerTask("build", ["stylelint", "sass", "eslint", "exec:jest", "exec:webpack"]);
 };

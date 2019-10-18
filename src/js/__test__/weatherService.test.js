@@ -1,6 +1,7 @@
-const WeatherService = require("../weather-service.js").WeatherService;
+import WeatherService from "../services/weather-service.js"
 
 describe("WeatherService", () => {
+	let weatherService;
 	beforeAll(() => {
 		weatherService = new WeatherService("8d0b7892bc5c02420f1c46dcdb9c2e4d");
 	});
