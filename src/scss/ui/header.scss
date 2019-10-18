@@ -1,0 +1,12 @@
+header.mdl-layout__header {
+	background-color: $darkPrimaryColor;
+	color: $textIcons;
+	.mdl-layout__header-row {
+		background-color: $primaryColor;
+		padding: 0 40px 0 20px;
+		.mdl-layout-title {
+			margin-left: 20px;
+			color: $textIcons;
+		}
+	}
+}
