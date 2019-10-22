@@ -51,7 +51,7 @@ WeatherComponent.prototype = {
 		var minutes = d.getMinutes();
 
 		// console.log(forecast)
-		reqListener("./assets/templates/card.html", function callback(resp) {
+		reqListener("../../../src/templates/card.html", function callback(resp) {
 			// console.log(today)
 			let newCard = Mustache.render(resp, {
 				city: `${today.name}, ${today.sys.country}`,

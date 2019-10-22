@@ -1,0 +1,32 @@
+<div class="main-container card">
+    <div class="info-day">
+        <span class="city-and-country-name">{{city}}</span>
+        <span class="week-day-hour">{{day}}</span>
+        <span class="day-forecast">{{dayForecast}}</span>
+    </div>
+    <div class="current-forecast">
+        <div class="main-info-left">
+            <span class="weather-img"><img class="weather-img" src="{{img}}"></span>
+            <div class="degrees-container">
+                <span class="degrees">{{grados}}</span>
+                <div class="degrees-scale">°C</div>
+            </div>
+        </div>
+
+        <div class="main-info-right">
+            <span class="day-forecast-humidity">{{humedad}}</span>
+            <span class="day-forecast-wind">{{viento}}</span>
+        </div>
+    </div>
+    <ul class="daily-forecast-bundle">
+        {{#forecast}}
+        <li class="daily-forecast">
+            <span>{{dayBundle}}</span>
+            <img class="weather-img-bundle" src="{{icon}}">
+            <span>
+                <span class="max">{{max}}</span>
+                <span class="min">{{min}}</span>
+            </span>
+        </li>
+        {{/forecast}}
+    </ul>

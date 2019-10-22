@@ -29,6 +29,14 @@ module.exports = function (grunt) {
 			webpack: {command: "npm run webpack"},
 			webpackdev: {command: "npm run webpackdev"},
 			jest: {command: "npm test"}
+		},
+		copy: {
+			main: {
+			  expand: true,
+			  cwd: "src/",
+			  src: "templates/card.html",
+			  dest: "assets/"
+			},
 		}
 	});
 
@@ -36,8 +44,9 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks("grunt-sass");
 	grunt.loadNpmTasks("grunt-eslint");
 	grunt.loadNpmTasks("grunt-exec");
+	grunt.loadNpmTasks("grunt-contrib-copy");
 
 	// Default task.
-	grunt.registerTask("default", ["stylelint", "sass", "eslint", "exec:jest","exec:webpackdev"]);
-	grunt.registerTask("build", ["stylelint", "sass", "eslint", "exec:jest", "exec:webpack"]);
+	grunt.registerTask("default", ["stylelint", "sass", "eslint", "copy","exec:jest","exec:webpackdev"]);
+	grunt.registerTask("build", ["stylelint", "sass", "eslint", "copy", "exec:jest", "exec:webpack"]);
 };
