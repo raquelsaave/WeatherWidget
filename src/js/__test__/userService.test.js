@@ -10,8 +10,20 @@ describe("UserService", () => {
 		expect(userService).toBeDefined();
 	});
 
-	// it("should return add the cityId", () => {
-	// 	console.log(userService.addCity(4005539))
-	// });
+	it("document.cookie should have added the cityId", () => {
+		userService.addCity(4005539);
+		userService.addCity(4013720);
+		expect(document.cookie).toContain(4013720)
+		console.log(document.cookie)
+	});
+
+	it("document.cookie should have the expected format", () => {
+		expect(document.cookie).toBe("weather=4005539,4013720")
+	});
+
+	it("Cookies should be returned", () => {
+		userService.getCities((data) => {return data})
+		 expect(document.cookie).toBe("weather=4005539,4013720")
+	});
 
 });
