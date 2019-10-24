@@ -16,7 +16,7 @@ searchComponent.update((data) => {
 	dashboard.addCard(data)
 });
 
-userService.getCities((data) => {
+userService.forEachCity((data) => {
 	dashboard.addCard(data)
 });
 

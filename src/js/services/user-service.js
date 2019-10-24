@@ -2,12 +2,15 @@ class UserService {
 	constructor() {
 	}
 
-	getCities(callback) {
-		let splitcookies = getCookies();
+	getCities() {
 
+	}
+
+	forEachCity(callback) {
+		let splitcookies = getCookies();
 		if (splitcookies.length != 0) {
 			let cookiesArray = splitcookies[0].split(",");
-			if (cookiesArray.length > 1) {
+			if (cookiesArray.length > 0) {
 				cookiesArray.forEach((cookie) => {
 					callback(cookie)
 				});
@@ -18,12 +21,11 @@ class UserService {
 
 	addCity(cityId) {
 		let splitcookies = getCookies();
-		var arrayCookies = splitcookies;
+		let arrayCookies = splitcookies;
 		if (splitcookies.length != 0) {
-			var arrayCookies = splitcookies[0].split(",");
+			arrayCookies = splitcookies[0].split(",");
 		}
-
-		if (arrayCookies.includes(cityId)) {
+		if (arrayCookies.includes(`${cityId}`)) {
 			document.cookie = `weather=${splitcookies}`
 		} else {
 			splitcookies.push(cityId)
