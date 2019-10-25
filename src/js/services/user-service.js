@@ -1,5 +1,6 @@
 class UserService {
 	constructor() {
+		this.removeCity.bind(this);
 	}
 
 	getCities() {
@@ -34,6 +35,21 @@ class UserService {
 
 	}
 
+	removeCity(cityId) {
+		console.log("entre!")
+		let splitcookies = getCookies();
+		// let arrayCookies = splitcookies;
+		let arrayCookies = splitcookies[0].split(",");
+		
+		var index = arrayCookies.indexOf(cityId);
+		if(index !== -1) {
+			arrayCookies.splice(index, 1);
+		}
+		console.log(arrayCookies)
+		splitcookies = arrayCookies.join();
+		console.log(splitcookies)
+		document.cookie = `weather=${splitcookies}`
+	}
 }
 
 function getCookies() {

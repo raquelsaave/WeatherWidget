@@ -18,7 +18,6 @@ WeatherComponent.prototype = {
 		]
 		Promise.all(promises)
 			.then((response) => {
-				// console.log(response)
 				this.weatherData.today = {
 					name: response[0].name,
 					sys: response[0].sys,
@@ -27,13 +26,7 @@ WeatherComponent.prototype = {
 					weather: response[0].weather[0]
 				}
 				this.weatherData.forecast = response[1].list
-				this.render(this.weatherData,function (data) {
-					// console.log(data)
-					callback(data);
-				},function(data) {
-					callback2(data)
-				}
-				);
+				this.render(this.weatherData,callback,callback2);
 			})
 			.catch((err) => 	{
 				console.log(err)
@@ -73,17 +66,14 @@ WeatherComponent.prototype = {
 
 			
 			template.innerHTML = newCard;
-			// console.log(template.innerHTML);
 			let button = template.content.getElementById(id)
 			console.log(button)
-			callbackDelete(button)
-			// button.addEventListener("click", (event) => {
-			// 	let card = event.target.closest("div");
-			// 	console.log(card)
-			// 	console.log("click, deleted!" + id)
-			// 	callbackDelete(card)
-			// 	// document.querySelector(".page-content").removeChild(card);
-			// })
+			button.addEventListener("click", (event) => {
+				let card = event.target.closest("div");
+				console.log(card)
+				console.log("click, deleted!" + id)
+				callbackDelete(card)
+			})
 			callbackRender(template.content)
 		});
 	}
