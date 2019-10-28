@@ -48,4 +48,11 @@ describe("UserService", () => {
 		// expect(document.cookie).toBe("weather=4005539,4013720")
 	});
 
+	it("Should delete the cookie selected", () => {
+		userService.addCity(4005539);
+		userService.addCity(4013720);
+		userService.removeCity("4005539");
+		expect(document.cookie).toBe("weather=4013720")
+	});
+
 });
