@@ -9,7 +9,7 @@ SearchComponent.prototype = {
 	update: function (callback) {
 		this.root.querySelector(".inputPlace").addEventListener("keypress", () => {
 			if (this.root.querySelector(".inputPlace").value.length >= 3) {
-				this.placeService.getPlaces(this.root.querySelector(".inputPlace").value)
+				this.placeService.getMockPlaces(this.root.querySelector(".inputPlace").value)
 					.then((data) => {
 						this.dataPlaces = data;
 						this.renderPlaces(this.dataPlaces,function(data) {
