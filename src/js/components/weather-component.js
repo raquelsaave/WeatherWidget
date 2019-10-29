@@ -49,7 +49,7 @@ WeatherComponent.prototype = {
 
 
 		// console.log(forecast)
-		reqListener("../../../src/templates/card.html", function callback(resp) {
+		reqListener("./src/templates/card.html", function callback(resp) {
 			// console.log(today)
 			let newCard = Mustache.render(resp, {
 				id: id,
