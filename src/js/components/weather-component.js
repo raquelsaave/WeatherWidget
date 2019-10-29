@@ -11,14 +11,13 @@ function WeatherComponent(cityId, weatherService) {
 
 
 WeatherComponent.prototype = {
-	update: function (callback) {
+	update: function (callback,callback2) {
 		let promises = [
 			this.weatherService.getWeather(this.cityId),
 			this.weatherService.getForecast(this.cityId, 8)
 		]
 		Promise.all(promises)
 			.then((response) => {
-				// console.log(response)
 				this.weatherData.today = {
 					name: response[0].name,
 					sys: response[0].sys,
@@ -27,17 +26,14 @@ WeatherComponent.prototype = {
 					weather: response[0].weather[0]
 				}
 				this.weatherData.forecast = response[1].list
-				this.render(this.weatherData,function (data) {
-					// console.log(data)
-					callback(data);
-				});
+				this.render(this.weatherData,callback,callback2);
 			})
 			.catch((err) => 	{
 				console.log(err)
 			})
 
 	},
-	render: function (weatherData,callbackRender) {
+	render: function (weatherData,callbackRender,callbackDelete) {
 		var today = weatherData.today
 		var forecast = weatherData.forecast;
 
@@ -49,11 +45,14 @@ WeatherComponent.prototype = {
 		// Get day
 		var hour = d.getHours();
 		var minutes = d.getMinutes();
+		var id = this.cityId;
+
 
 		// console.log(forecast)
-		reqListener("./assets/templates/card.html", function callback(resp) {
+		reqListener("../../../src/templates/card.html", function callback(resp) {
 			// console.log(today)
 			let newCard = Mustache.render(resp, {
+				id: id,
 				city: `${today.name}, ${today.sys.country}`,
 				day: `${n},   ${hour}:${minutes}`,
 				dayForecast: today.weather.main,
@@ -64,7 +63,17 @@ WeatherComponent.prototype = {
 				forecast : renderBundle(forecast)
 			});
 			let template = document.createElement("template");
+
+			
 			template.innerHTML = newCard;
+			let button = template.content.getElementById(id)
+			console.log(button)
+			button.addEventListener("click", (event) => {
+				let card = event.target.closest("div");
+				console.log(card)
+				console.log("click, deleted!" + id)
+				callbackDelete(card)
+			})
 			callbackRender(template.content)
 		});
 	}
