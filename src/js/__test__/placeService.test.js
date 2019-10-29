@@ -12,7 +12,7 @@ describe("PlaceService", () => {
 	});
 
 	it("should return places matching guada", () => {
-		return placeService.getPlaces("Guada")
+		return placeService.getMockPlaces("Guada")
 			.then(places => {
 				places.forEach(place => {
 					expect(place.name.toLowerCase()).toMatch(/guada/);

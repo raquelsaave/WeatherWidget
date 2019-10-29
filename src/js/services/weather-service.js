@@ -1,5 +1,6 @@
 function WeatherService(API_ID) {
 	this.API = API_ID;
+	
 	this.getForecast = this.getForecast.bind(this);
 	this.getWeather = this.getWeather.bind(this);
 }
